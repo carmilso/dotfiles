@@ -1,0 +1,9 @@
+# [flavor]
+# use = "catppuccin-frappe"
+[which]
+mask            = { bg = "#313244" }
+# cand            = { fg = "#94e2d5" }
+# rest            = { fg = "#9399b2" }
+# desc            = { fg = "#f5c2e7" }
+# separator       = "  "
+separator_style = { fg = "#94e2d5" }

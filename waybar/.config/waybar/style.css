@@ -1,0 +1,211 @@
+@import "colors-default.css";
+@import "colors-waybar.css";
+
+@define-color appmenu #7cafc2;
+@define-color critical #ab4642;
+@define-color full #a1b56c;
+@define-color bluetooth #86c1b9;
+/*@define-color foreground #3D3E3F;*/
+
+* {
+  transition: none;
+  box-shadow: none;
+  min-height: 0;
+}
+
+#waybar {
+  /* font-family: "Source Code Pro", sans-serif; */
+  font-family: "JetBrainsMono Nerd Font", "Source Code Pro", monospace;
+  /* font-family: "NotoSansMono Nerd Font"; */
+  font-size: 1.2em;
+  font-weight: 400;
+  color: @foreground;
+  /*color: #3D3E3F;*/
+  opacity: 0.9;
+  /* Gradiente horizontal ─más opaco en los bordes, más claro al centro─ */
+  background: linear-gradient(90deg,
+                    rgba(14,25,27,0.80) 0%,   /* extremo izquierdo  */
+                    rgba(14,25,27,0.60) 20%,  /* va aclarando…      */
+                    rgba(14,25,27,0.40) 50%,  /* punto más claro    */
+                    rgba(14,25,27,0.60) 80%,  /* se vuelve a oscurecer */
+                    rgba(14,25,27,0.80) 100%); /* extremo derecho    */
+  /* El blur se aplica desde el compositor (layerrule = blur, waybar). */
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 2px;                      /* para separar contenido del borde de la barra */
+  margin: 6px 8px 0 8px;             /* pequeña separación con los bordes de la pantalla */
+}
+
+#workspaces {
+  background: @color2;
+  margin: 4px 4px;
+  padding: 0px 1px;
+  border-radius: 4px;
+  border: 0px;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 0.9em;
+  color: @color1;
+}
+
+#workspaces button {
+  margin: 4px 3px;
+  padding: 0 1px;
+  border-radius: 4px;
+  border: 0px;
+  color: @color1;
+  background-color: @foreground;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.4;
+}
+
+#workspaces button.active {
+  color: @color1;
+  background: @foreground;
+  border-radius: 4px;
+  min-width: 30px;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+}
+
+#workspaces button.urgent {
+  color: @color1;
+  background: @color13;
+}
+
+#workspaces button:hover {
+  color: @color1;
+  background: @foreground;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+#tray {
+  margin: 4px 4px;
+  border-radius: 4px;
+  /*background-color: @color2;*/
+}
+
+#tray * {
+  padding: 0 4px;
+}
+
+#mode,
+#cpu,
+#memory,
+/* #network, */
+#pulseaudio,
+#idle_inhibitor,
+#backlight,
+#bluetooth,
+#custom-storage,
+#custom-updates,
+#custom-weather,
+#custom-mail,
+#clock,
+#temperature,
+#language,
+#battery,
+#custom-notification,
+#custom-spotify,
+#system,
+#hardware,
+#devices,
+#keyboard-state,
+#custom-agenda {
+  margin: 4px 2px;
+  padding: 0 4px;
+  background-color: @color2;
+  border-radius: 4px;
+  /*min-width: 20px;*/
+  font-size: 0.9em;
+}
+
+#network {
+  margin: 4px 2px;
+  padding: 0 4px;
+  /* background-color: @color2; */
+  border-radius: 4px;
+  /*min-width: 20px;*/
+  font-size: 0.9em;
+}
+
+/* #custom-agenda { */
+/*   background-color: @color6; */
+/* } */
+
+#keyboard-state {
+  min-width: 0px;
+  padding: 0px;
+  font-size: 1.2em;
+  color: @color15;
+}
+
+#keyboard-state {
+  background-color: transparent;
+}
+
+#cpu,
+#memory,
+#temperature {
+  margin: 4px 4px;
+  padding: 0 0;
+}
+
+#battery.full {
+  color: @full;
+}
+
+/* #battery.critical { */
+/*   color: @critical; */
+/* } */
+
+#battery.critical, #temperature.critical { color: @critical; }
+#battery.warning  { color: #dc9656; }
+#network.disconnected { color: @critical; }
+
+#custom-appmenu {
+  color: @appmenu;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+#pulseaudio.muted {
+  color: @color15;
+}
+
+#pulseaudio.bluetooth {
+  color: @bluetooth;
+}
+
+#clock {
+  margin-right: 4px;
+  /*margin-left: 4px;*/
+  /* background-color: transparent; */
+}
+
+#temperature.critical {
+  color: @color15;
+}
+
+#custom-spotify,
+#custom-agenda {
+  font-family: "NotoSansMono Nerd Font";
+  color: @color12;
+}
+
+#window {
+  font-size: 0.9em;
+  font-weight: 400;
+  font-family: sans-serif;
+}
+
+#workspaces button,
+#tray * {
+  transition: all 0.15s ease;
+}
+#workspaces button:hover,
+#tray *:hover {
+  /* hover enlarge effect no disponible en GTK, usar cambio de opacidad */
+  opacity: 0.8;
+}

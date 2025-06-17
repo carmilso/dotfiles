@@ -1,0 +1,32 @@
+[manager]
+sort_by = "mtime"
+sort_reverse = true
+show_hidden = true
+show_sym_link = true
+
+[opener]
+edit = [
+	{ run = 'nvim "$@"', block = true },
+]
+pdf = [
+  { run = 'okular "$@"' },
+]
+view = [
+  { run = 'gwenview "$@"' },
+]
+play = [
+  { run = 'vlc "$@"' },
+]
+
+[open]
+rules = [
+  { mime = "text/*", use = "edit" },
+  { mime = "video/*", use = "play" },
+  { mime = "image/*", use = "view" },
+  { name = "*.json", use = "edit" },
+  { name = "*.pdf", use = "pdf" },
+]
+
+# open = [
+# 	{ run = 'xdg-open "$@"', block = false, desc = "Open" },
+# ]
