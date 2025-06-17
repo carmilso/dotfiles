@@ -1,0 +1,47 @@
+############################################################
+# Global ignore rules for this dotfiles repository
+############################################################
+
+# ----------------------------------------------------------
+# Backup and temporary files
+# ----------------------------------------------------------
+*.bak
+*.swp
+*.swo
+*.tmp
+*~
+
+# ----------------------------------------------------------
+# Log files
+# ----------------------------------------------------------
+*.log
+
+# ----------------------------------------------------------
+# System/OS artefacts
+# ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------------------------
+# Large wallpapers or other binary assets
+# ----------------------------------------------------------
+# Old root-level wallpaper file (kept for backwards-compat)
+wallpaper*
+# Current Hyprland wallpaper
+hypr/.config/hypr/wallpaper*
+
+# ----------------------------------------------------------
+# Embedded Git repositories (prevent nested repos from being
+# committed – plugin submodules, vendoured themes, etc.)
+# ----------------------------------------------------------
+# Use "/**/.git" to match any nested .git dirs under these trees
+nvim/**/.git
+yazi/**/.git
+
+# ----------------------------------------------------------
+# Caches and user data – not needed in version control
+# ----------------------------------------------------------
+.cache/
+.local/share/
+
+############################################################
