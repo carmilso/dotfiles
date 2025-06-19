@@ -49,7 +49,7 @@ required symbolic links:
 
 ```bash
 # from the root of this repository
-stow ghostty hypr kitty nvim swaync tofi wal waybar wlogout yazi -t "$HOME"
+stow hypr kitty nvim swaync tofi wal waybar wlogout yazi -t "$HOME"
 ```
 
 Stow will replicate the directory structure under `~/.config` (and elsewhere)
