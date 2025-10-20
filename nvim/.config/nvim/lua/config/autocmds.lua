@@ -47,9 +47,29 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         avante_api.add_selected_file(relative_commit_path)
       end)
 
+      -- Excluir todo el diff de poetry.lock (y las líneas que lo mencionan) del buffer de commit.
+      pcall(function()
+        local bufnr = 0
+        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        local filtered = {}
+        local skipping = false
+        for _, l in ipairs(lines) do
+          local is_diff = l:match("^diff %-%-git ")
+          if is_diff then
+            -- inicie bloqueo si es diff para poetry.lock
+            skipping = l:match("poetry%.lock") and true or false
+          end
+          -- saltar líneas de poetry.lock o líneas dentro de su diff
+          if not skipping and not (l:match("poetry%.lock") and not is_diff) then
+            table.insert(filtered, l)
+          end
+        end
+        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, filtered)
+      end)
+
       -- Enviamos la pregunta iniciando un nuevo chat.
       avante_api.ask({
-        question = "Generate a concise and descriptive git commit message (in English) for the staged changes that you see in this file. Use commitizen format for the message. Don't do anything else, just print the commit message and finish",
+        question = "Generate a concise and descriptive git commit message (in English) for the staged changes that you see in this file. You don't need to run any git tool, just focus on the changes file attached. Use commitizen format for the message. Don't try to commit by yourself. Print the commit message and terminate",
         new_chat = true,
       })
 
@@ -74,7 +94,14 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
   group = env_diagnostics_group,
   pattern = ".env*",
   callback = function()
-    vim.diagnostic.disable(0)
+    vim.diagnostic.enable(false)
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+  group = env_diagnostics_group,
+  pattern = "config/deploy*.yml",
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})

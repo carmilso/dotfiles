@@ -23,15 +23,26 @@ return {
           }
         end,
 
+        provider = "gemini",
+
         providers = {
           claude = {
-            -- disable_tools = true, -- Do not use tools with Claude models
+            disable_tools = true, -- Do not use tools with Claude models
+            model = "claude-3-7-sonnet-20250219",
+          },
+          openai = {
+            model = "gpt-4o",
+          },
+          gemini = {
+            model = "gemini-2.5-flash",
+            -- model = "gemini/gemini-1.5-flash",
           },
         },
       })
     end,
-    -- We pass the complete configuration table directly via the `config` callback,
-    -- so there is no need for a separate `opts` field.
+    -- we keep opts empty because provider-specific configuration is passed
+    -- directly above.
+    opts = {},
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
