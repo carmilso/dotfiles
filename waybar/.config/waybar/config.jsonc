@@ -15,7 +15,7 @@
     "custom/spotify"
   ],
   "modules-center": [
-    "hyprland/window"
+    "group/window"
   ],
   "modules-right": [
     "network",
@@ -233,7 +233,7 @@
     "interval": 10,
     // "format-critical": "{temperatureC}°C {icon}",
     // "format": "{temperatureC}°C {icon}",
-    "format": "{icon}{temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
     "format-icons": [
       "",
       "",
@@ -312,7 +312,7 @@
   },
   "pulseaudio": {
     // "scroll-step": 10, // %, can be a float
-    "format": "{icon} {volume}% {format_source}",
+    "format": "{icon}{volume}% {format_source}",
     "format-bluetooth": "{icon} {volume}% {format_source}",
     "format-bluetooth-muted": "  {format_source}",
     "format-muted": "  {format_source}",
@@ -400,6 +400,18 @@
     "modules": [
       "clock",
       "custom/agenda"
+    ]
+  },
+  "group/window": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "window-drawer",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "hyprland/window",
+      "custom/crypto"
     ]
   }
 }

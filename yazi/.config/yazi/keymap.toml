@@ -1,3 +1,4 @@
+# Keymap customizations for the manager view
 [[mgr.prepend_keymap]]
 on   = [ "c", "m" ]
 run  = "plugin chmod"

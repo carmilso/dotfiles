@@ -5,26 +5,31 @@ show_hidden = true
 show_sym_link = true
 
 [opener]
-edit = [
-	{ run = 'nvim "$@"', block = true },
-]
-pdf = [
-  { run = 'okular "$@"' },
-]
-view = [
-  { run = 'gwenview "$@"' },
-]
-play = [
-  { run = 'vlc "$@"' },
+edit = [{ run = 'nvim "$@"', block = true }]
+pdf = [{ run = 'okular "$@"' }]
+view = [{ run = 'gwenview "$@"' }]
+play = [{ run = 'vlc "$@"' }]
+
+# Generic fallback opener that relies on the system MIME associations
+# `xdg-open` (Linux) will forward the file to the desktop environment so
+# almost any kind of document (Office, audio, video, etc.) opens with the
+# appropriate application.
+# "block = false" tells yazi not to wait for the external program to exit,
+# keeping the file-manager responsive.
+open = [
+  { run = 'xdg-open "$@"', block = false, desc = "Open with default application" },
 ]
 
 [open]
 rules = [
   { mime = "text/*", use = "edit" },
-  { mime = "video/*", use = "play" },
   { mime = "image/*", use = "view" },
+  { mime = "video/*", use = "play" },
+  { mime = "audio/*", use = "play" },
   { name = "*.json", use = "edit" },
   { name = "*.pdf", use = "pdf" },
+  # Fallback – let the OS decide the right application
+  { name = "*", use = "open" },
 ]
 
 # open = [

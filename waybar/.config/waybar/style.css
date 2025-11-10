@@ -11,12 +11,12 @@
   transition: none;
   box-shadow: none;
   min-height: 0;
+  font-family: "SF Pro Display", "JetBrainsMono Nerd Font Propo";
 }
 
 #waybar {
   /* font-family: "Source Code Pro", sans-serif; */
-  font-family: "JetBrainsMono Nerd Font", "Source Code Pro", monospace;
-  /* font-family: "NotoSansMono Nerd Font"; */
+  /* font-family: "JetBrainsMono Nerd Font", "Source Code Pro", monospace; */
   font-size: 1.2em;
   font-weight: 400;
   color: @foreground;
@@ -104,6 +104,7 @@
 #bluetooth,
 #custom-storage,
 #custom-updates,
+#custom-crypto,
 #custom-weather,
 #custom-mail,
 #clock,
@@ -212,4 +213,18 @@
 #tray *:hover {
   /* hover enlarge effect no disponible en GTK, usar cambio de opacidad */
   opacity: 0.8;
+}
+
+/* Grupo window con drawer para crypto */
+.window-drawer {
+  margin: 4px 2px;
+  padding: 0 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+#custom-crypto {
+  background-color: transparent;
+  margin-right: 50px;
 }
